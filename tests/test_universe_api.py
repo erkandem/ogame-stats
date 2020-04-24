@@ -1,6 +1,7 @@
 import pytest
 from ogame_stats.universe_api import UniverseDataUrls
 from ogame_stats import UniverseData
+from ogame_stats import UniverseQuestions
 from .testing_utils import Constants
 from .testing_utils import mock_requests
 
@@ -63,3 +64,8 @@ class TestUniverseData(Constants):
 
     def test_get_total_data(self, mock_requests):
         universe = UniverseData(self.universe_id, self.community)
+
+
+class TestUniverseQuestions(Constants):
+    def test_get_total_data(self, mock_requests):
+        q = UniverseQuestions(self.universe_id, self.community)
