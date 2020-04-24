@@ -35,8 +35,7 @@ setup(
         'Programming Language :: Python :: 3.8',
     ],
     keywords='ogame',
-    package_dir={'': 'ogame_stats'},
-    packages=find_packages(where='ogame_stats', exclude=('docs', 'tests')),
+    packages=find_packages(where='.', exclude=('docs', 'tests',)),
     python_requires='>=3.6, <4',
     install_requires=['pandas', 'requests', 'xmltodict'],
     extras_require={
