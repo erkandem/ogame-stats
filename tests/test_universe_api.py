@@ -1,13 +1,14 @@
 from ogame_stats.highscores_api import HighScoreUrls
 from .testing_utils import TestingFiles as tf
 
+class Dummy:
+    universe_id = 999
+    community = 'en'
 
-class TestHighScoresUrls:
+class TestHighScoresUrls(Dummy):
     """
     talking about the low hanging fruits
     """
-    universe_id = 999
-    community = 'en'
 
     def test__get_base_url(self):
         hs = HighScoreUrls(self.universe_id, self.community)
