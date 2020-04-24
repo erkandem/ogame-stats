@@ -5,7 +5,7 @@ wrapper around public game statistics for https://ogame.org
 ---
 
 Some classes and methods to retrieve public data of the online game **ogame**.
-Not intended to interactive with an account - which is forbidden anyway.
+This package is **NOT** intended to interact with an account - which is forbidden anyway.
 
 Might be used to query the data set, visualize results and generally to do data analysis.
 
