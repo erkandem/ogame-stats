@@ -42,7 +42,7 @@ class UniverseDataUrls(ApiBaseClass):
     def _get_players_url(self):
         return f"{self._get_base_url()}/players.xml"
 
-    def _get_alliences_url(self):
+    def _get_alliances_url(self):
         return f"{self._get_base_url()}/alliances.xml"
 
     def _get_localization_url(self):
@@ -68,7 +68,7 @@ class UniverseDataUrls(ApiBaseClass):
 
     def load_alliances_data(self):
         """['foundDate', 'founder', 'homepage', 'id', 'logo', 'name', 'open', 'tag']"""
-        url = self._get_alliences_url()
+        url = self._get_alliances_url()
         return self._load_data_as_df(url)
 
     def load_game_schema(self):
