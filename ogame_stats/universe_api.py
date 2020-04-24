@@ -108,6 +108,16 @@ class UniverseData:
         self.techs = localization['techs']
         self.missions = localization['missions']
 
+
+class UniverseQuestions(UniverseData):
+    def __init__(self, universe_id: int, community: str):
+        """
+        Args:
+            universe_id (int): an integer identifying the universe (e.g. 162 - Janice)
+            community (str):  an string indicating (language) community='en'
+        """
+        super().__init__(universe_id, community)
+
     def get_planets_of_player(self, player_name: str) -> dict:
         player_id_str = self.get_player_id(player_name)
         results = self.universe.query('player == @player_id_str')
