@@ -1,6 +1,5 @@
 import json
-import requests
-from .utils import ApiBaseClass, nowstr
+from .utils import ApiBaseClass
 
 
 class UniversesData(ApiBaseClass):
