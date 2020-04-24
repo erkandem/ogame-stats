@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 
-python setup.py clean sdist bdist_wheel
+rm -rf build
+rm -rf dist
+rm -rf ogame_stats.egg-info
+python setup.py build sdist bdist_wheel
