@@ -151,18 +151,18 @@ class UniverseData:
     def get_alliance_id_by_name(self, name: str) -> str:
         return self.alliences.query('name == @name').iloc[0]['id']
 
-    def get_players_of_allience(self, tag: str) -> pd.DataFrame:
-        allience_id = self.get_alliance_id_by_tag(tag)
-        members = self.players.query('alliance == @allience_id')
+    def get_players_of_alliance(self, tag: str) -> pd.DataFrame:
+        alliance_id = self.get_alliance_id_by_tag(tag)
+        members = self.players.query('alliance == @alliance_id')
         return members
 
     def get_players_of_allience_by_name(self, name: str) -> pd.DataFrame:
-        allience_id = self.get_alliance_id_by_name(name)
-        members = self.players.query('alliance == @allience_id')
+        alliance_id = self.get_alliance_id_by_name(name)
+        members = self.players.query('alliance == @alliance_id')
         return members
 
     def get_planets_of_alliance(self, tag: str) -> [str]:
-        members = self.get_players_of_allience(tag)
+        members = self.get_players_of_alliance(tag)
         member_ids = members['id'].to_list()
         data = [self.get_planets_of_player_by_id(player_id) for player_id in member_ids]
         coords = [planet['coords'] for player in data for planet in player]
