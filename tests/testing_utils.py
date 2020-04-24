@@ -31,6 +31,7 @@ class TestingFiles:
         'https://s162-en.ogame.gameforge.com/api/universe.xml': 'universe_162_en_20200422_165756_915643.xml',
         'https://s162-en.ogame.gameforge.com/api/localization.xml': 'localisatzion_162_en_20200424_122401_354285.xml',
         'https://s162-en.ogame.gameforge.com/api/playerData.xml?id=110008': 'playerdata_162_en_110008_20200424_123313_597067.xml',
+        'https://s162-en.ogame.gameforge.com/api/serverData.xml': 'server_data_162_en_20200424_224101_525526.xml',
     }
 
     def get_file_path(self, url: str):
