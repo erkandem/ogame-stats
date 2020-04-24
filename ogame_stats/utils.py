@@ -6,25 +6,28 @@ import xmltodict
 
 
 class ApiBaseClass:
+    def _do_get(self, url: str) -> requests.Response:
+        return requests.get(url)
+
     def _load_data(self, url: str) -> [{str: str}]:
-        response = requests.get(url)
+        response = self._do_get(url)
         xml_string = response.content.decode('utf-8')
         root = ET.fromstring(xml_string)
         return [elm.attrib for elm in root]
 
     def _load_kv_style_data(self, url: str) -> {str: str}:
-        response = requests.get(url)
+        response = self._do_get(url)
         xml_string = response.content.decode('utf-8')
         root = ET.fromstring(xml_string)
         return {elm.tag: elm.text for elm in list(root)}
 
     def _load_data_via_xmltodict(self, url: str) -> {}:
-        response = requests.get(url)
+        response = self._do_get(url)
         xml_string = response.content.decode('utf-8')
         return xmltodict.parse(xml_string, attr_prefix='', dict_constructor=dict)
 
     def _load_nested_data(self, url: str) -> {str: {str: str}}:
-        response = requests.get(url)
+        response = self._do_get(url)
         xml_string = response.content.decode('utf-8')
         root = ET.fromstring(xml_string)
         return {
