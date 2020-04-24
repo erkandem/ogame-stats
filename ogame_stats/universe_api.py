@@ -54,10 +54,7 @@ class UniverseDataUrls(ApiBaseClass):
 
     def load_server_data(self):
         url = self._get_serverdata_url()
-        response = requests.get(url)
-        xml_string = response.content.decode('utf-8')
-        root = ET.fromstring(xml_string)
-        return {elm.tag: elm.text for elm in root.getchildren()}
+        return self._load_kv_style_data(url)
 
     def load_players_data(self):
         """['id', 'name', 'status', 'alliance']"""
@@ -77,15 +74,7 @@ class UniverseDataUrls(ApiBaseClass):
     def load_game_schema(self):
         """{'techs': {'1': 'Metal Mine'}, 'missions': {'1': 'Attack'}"""
         url = self._get_localization_url()
-        response = requests.get(url)
-        xml_string = response.content.decode('utf-8')
-        root = ET.fromstring(xml_string)
-        return {
-            elm.tag: {
-                child.attrib['id']: child.text
-                for child in list(elm)
-            } for elm in root.getchildren()
-        }
+        return self._load_nested_data(url)
 
 
 class UniverseData:
