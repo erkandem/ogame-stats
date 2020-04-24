@@ -1,6 +1,8 @@
 from pathlib import Path
 import zipfile
+import pytest
 import requests
+from ogame_stats import utils
 
 
 class Constants:
@@ -59,3 +61,8 @@ class TestingFiles:
 
     def get(self, url: str) -> requests.Response:
         return self._do_get(url)
+
+
+@pytest.fixture
+def mock_requests(monkeypatch):
+    monkeypatch.setattr(utils, 'requests', TestingFiles())
