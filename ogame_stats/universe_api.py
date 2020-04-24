@@ -18,7 +18,7 @@ Update frequencies:
 """
 import json
 import pandas as pd
-from typing import Union
+from typing import Union, Dict
 from urllib.parse import urlencode
 from .utils import ApiBaseClass
 
@@ -28,53 +28,53 @@ class UniverseDataUrls(ApiBaseClass):
         self.universe_id = universe_id
         self.community = community
 
-    def _get_base_url(self):
+    def _get_base_url(self) -> str:
         return f"https://s{self.universe_id}-{self.community}.ogame.gameforge.com/api"
 
-    def _get_serverdata_url(self):
+    def _get_serverdata_url(self) -> str:
         return f"{self._get_base_url()}/serverData.xml"
 
-    def _get_universe_url(self):
+    def _get_universe_url(self) -> str:
         return f"{self._get_base_url()}/universe.xml"
 
-    def _get_players_url(self):
+    def _get_players_url(self) -> str:
         return f"{self._get_base_url()}/players.xml"
 
-    def _get_alliances_url(self):
+    def _get_alliances_url(self) -> str:
         return f"{self._get_base_url()}/alliances.xml"
 
-    def _get_localization_url(self):
+    def _get_localization_url(self) -> str:
         return f"{self._get_base_url()}/localization.xml"
 
-    def _get_playerdata_url(self, player_id: int):
+    def _get_playerdata_url(self, player_id: int) -> str:
         query = {'id': player_id}
         return f'{self._get_base_url()}/playerData.xml?{urlencode(query)}'
 
-    def load_server_data(self):
+    def load_server_data(self) -> {str: str}:
         url = self._get_serverdata_url()
         return self._load_kv_style_data(url)
 
-    def load_players_data(self):
+    def load_players_data(self) -> pd.DataFrame:
         """['id', 'name', 'status', 'alliance']"""
         url = self._get_players_url()
         return self._load_data_as_df(url)
 
-    def load_universe_data(self):
+    def load_universe_data(self) -> pd.DataFrame:
         """['id', 'player', 'name', 'coords']"""
         url = self._get_universe_url()
         return self._load_data_as_df(url)
 
-    def load_alliances_data(self):
+    def load_alliances_data(self) -> pd.DataFrame:
         """['foundDate', 'founder', 'homepage', 'id', 'logo', 'name', 'open', 'tag']"""
         url = self._get_alliances_url()
         return self._load_data_as_df(url)
 
-    def load_localization_data(self):
+    def load_localization_data(self) -> Dict:
         """{'techs': {'1': 'Metal Mine'}, 'missions': {'1': 'Attack'}"""
         url = self._get_localization_url()
         return self._load_nested_data(url)
 
-    def load_player_data(self, player_id: Union[int, str]) -> dict:
+    def load_player_data(self, player_id: Union[int, str]) -> Dict:
         url = self._get_playerdata_url(player_id)
         return self._load_data_via_xmltodict(url)
 
@@ -178,7 +178,7 @@ class UniverseQuestions(UniverseData):
         coords.sort()
         return coords
 
-    def get_planets_distribution_by_galaxy(self, allience_tag: str) -> dict:
+    def get_planets_distribution_by_galaxy(self, allience_tag: str) -> Dict:
         galaxy_list = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
         coords = self.get_planets_of_alliance(allience_tag)
         return {galaxy: sum([elm[0] == galaxy for elm in coords]) for galaxy in galaxy_list}
