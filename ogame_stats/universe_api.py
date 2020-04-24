@@ -69,7 +69,7 @@ class UniverseDataUrls(ApiBaseClass):
         url = self._get_alliances_url()
         return self._load_data_as_df(url)
 
-    def load_game_schema(self):
+    def load_localization_data(self):
         """{'techs': {'1': 'Metal Mine'}, 'missions': {'1': 'Attack'}"""
         url = self._get_localization_url()
         return self._load_nested_data(url)
@@ -104,9 +104,9 @@ class UniverseData:
         self.universe_coords_list = self.universe['coords'].to_list()
         self.alliances = self.urls.load_alliances_data()
         self.serverdata = self.urls.load_server_data()
-        game_schema = self.urls.load_game_schema()
-        self.techs = game_schema['techs']
-        self.missions = game_schema['missions']
+        localization = self.urls.load_localization_data()
+        self.techs = localization['techs']
+        self.missions = localization['missions']
 
     def get_planets_of_player(self, player_name: str) -> dict:
         player_id_str = self.get_player_id(player_name)
