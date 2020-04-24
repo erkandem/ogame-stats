@@ -113,7 +113,7 @@ class HighScoreUrls(ApiBaseClass):
         return df
 
 
-class HighScoresData:
+class HighScoreData:
     universe_id: int
     community: str
     total: pd.DataFrame
@@ -140,5 +140,5 @@ class HighScoresData:
         self.honor = self.urls.get_honor_data()
 
 
-class HighScoreQuestions(HighScoresData):
+class HighScoreQuestions(HighScoreData):
     pass

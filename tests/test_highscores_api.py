@@ -1,6 +1,7 @@
 import pytest
 from ogame_stats.highscores_api import HighScoreUrls
-from ogame_stats.highscores_api import HighScoresData
+from ogame_stats.highscores_api import HighScoreData
+from ogame_stats.highscores_api import HighScoreQuestions
 from .testing_utils import mock_requests
 from .testing_utils import Constants
 
@@ -74,7 +75,12 @@ class TestHighScoreDataRetrieval(Constants):
     def test_that_it_is_patched(self, mock_requests):
         """depends on the sample data which contains only data for universe 162"""
         with pytest.raises(KeyError):
-            hs = HighScoresData(361, 'en')
+            hs = HighScoreData(361, 'en')
 
     def test_get_total_data(self, mock_requests):
-        hs = HighScoresData(self.universe_id, self.community)
+        hs = HighScoreData(self.universe_id, self.community)
+
+
+class TestHighScorQuestions(Constants):
+    def test_get_total_data(self, mock_requests):
+        q = HighScoreQuestions(self.universe_id, self.community)
