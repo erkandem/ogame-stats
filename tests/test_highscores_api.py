@@ -2,17 +2,12 @@ import pytest
 from ogame_stats.highscores_api import HighScoreUrls
 from ogame_stats.highscores_api import HighScoresData
 from ogame_stats import utils
-from .testing_utils import TestingFiles
+from .testing_utils import TestingFiles, Constants
 
 
 @pytest.fixture
 def mock_requests(monkeypatch):
     monkeypatch.setattr(utils, 'requests', TestingFiles())
-
-
-class Constants:
-    universe_id = 162
-    community = 'en'
 
 
 class TestHighScoresUrls(Constants):

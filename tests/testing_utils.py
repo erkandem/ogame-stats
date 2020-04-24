@@ -3,6 +3,11 @@ import zipfile
 import requests
 
 
+class Constants:
+    universe_id = 162
+    community = 'en'
+
+
 class TestingFiles:
     """
     Subclass with this to overwrite actual HTTP request with
