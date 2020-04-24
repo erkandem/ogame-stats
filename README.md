@@ -34,14 +34,14 @@ pip install ogama_data_api
 the most basic usage would look like.
 ```python
 #%%
-import ogame_data_api
+import ogame_stats
 
 #%% supply the two inputs to uniquely identify a universe
-universe_id=162
-community='en'
+universe_id = 162
+community = 'en'
 
 #%% instantiate and thereby load the data
-universe = ogame_data_api.UniverseData(universe_id, community)
+universe = ogame_stats.UniverseData(universe_id, community)
 
 ```
 than you could take a look at the data sets.
