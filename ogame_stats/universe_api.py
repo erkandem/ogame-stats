@@ -18,9 +18,9 @@ Update frequencies:
 """
 import json
 import pandas as pd
+from typing import Union
 from urllib.parse import urlencode
 from .utils import ApiBaseClass
-from typing import Union
 
 
 class UniverseDataUrls(ApiBaseClass):
