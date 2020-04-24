@@ -79,11 +79,10 @@ class UniverseDataUrls(ApiBaseClass):
         return self._load_data_via_xmltodict(url)
 
 
-
 class UniverseData:
     players: pd.DataFrame = None
     universe: pd.DataFrame = None
-    alliences: pd.DataFrame = None
+    alliances: pd.DataFrame = None
     serverdata: dict = None
     techs: dict = None
     missions: dict = None
@@ -103,7 +102,7 @@ class UniverseData:
         self.players = self.urls.load_players_data()
         self.universe = self.urls.load_universe_data()
         self.universe_coords_list = self.universe['coords'].to_list()
-        self.alliences = self.urls.load_alliances_data()
+        self.alliances = self.urls.load_alliances_data()
         self.serverdata = self.urls.load_server_data()
         game_schema = self.urls.load_game_schema()
         self.techs = game_schema['techs']
@@ -146,17 +145,17 @@ class UniverseData:
         return json.dumps(self.get_player_data(player_name), indent=2)
 
     def get_alliance_id_by_tag(self, tag: str) -> str:
-        return self.alliences.query('tag == @tag').iloc[0]['id']
+        return self.alliances.query('tag == @tag').iloc[0]['id']
 
     def get_alliance_id_by_name(self, name: str) -> str:
-        return self.alliences.query('name == @name').iloc[0]['id']
+        return self.alliances.query('name == @name').iloc[0]['id']
 
     def get_players_of_alliance(self, tag: str) -> pd.DataFrame:
         alliance_id = self.get_alliance_id_by_tag(tag)
         members = self.players.query('alliance == @alliance_id')
         return members
 
-    def get_players_of_allience_by_name(self, name: str) -> pd.DataFrame:
+    def get_players_of_alliances_by_name(self, name: str) -> pd.DataFrame:
         alliance_id = self.get_alliance_id_by_name(name)
         members = self.players.query('alliance == @alliance_id')
         return members
