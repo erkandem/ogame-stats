@@ -51,3 +51,6 @@ class TestingFiles:
         response = requests.Response()
         response._content = data
         return response
+
+    def get(self, url: str) -> requests.Response:
+        return self._do_get(url)
