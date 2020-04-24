@@ -70,3 +70,9 @@ class TestHighScoresUrls(Constants):
         expected = hs._get_base_url() + '?category=1&type=7'
         result = hs._get_honor_url()
         assert result == expected
+
+
+class TestHighScoreDataRetrieval(Constants):
+
+    def test_get_total_data(self):
+        pass
