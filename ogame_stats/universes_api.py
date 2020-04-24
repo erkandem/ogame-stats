@@ -20,4 +20,4 @@ class UniversesData(ApiBaseClass):
 
     def load_universes(self):
         url = self._get_universes_url()
-        self._load_data_as_df(url)
+        return self._load_data_as_df(url)
