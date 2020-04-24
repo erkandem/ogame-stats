@@ -24,12 +24,12 @@ from .utils import ApiBaseClass
 
 
 class UniverseDataUrls(ApiBaseClass):
-    def __init__(self, universe: int, community: str):
-        self.universe = universe
+    def __init__(self, universe_id: int, community: str):
+        self.universe_id = universe_id
         self.community = community
 
     def _get_base_url(self):
-        return f"https://s{self.universe}-{self.community}.ogame.gameforge.com/api"
+        return f"https://s{self.universe_id}-{self.community}.ogame.gameforge.com/api"
 
     def _get_serverdata_url(self):
         return f"{self._get_base_url()}/serverData.xml"
