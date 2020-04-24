@@ -13,7 +13,8 @@ class UniversesData(ApiBaseClass):
 
     def _load_data(self, url):
         """overwrites parents because we receive json instead of xml"""
-        response = requests.get(self._get_universes_url())
+        url = self._get_universes_url()
+        response = self._do_get(url)
         json_str = response.content.decode('utf-8')
         return json.loads(json_str)
 
