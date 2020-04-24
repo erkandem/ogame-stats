@@ -17,12 +17,10 @@ Update frequencies:
 
 """
 import json
-import xml.etree.ElementTree as ET
 import pandas as pd
-import requests
-import xmltodict
 from urllib.parse import urlencode
 from .utils import ApiBaseClass
+from typing import Union
 
 
 class UniverseDataUrls(ApiBaseClass):
@@ -75,6 +73,11 @@ class UniverseDataUrls(ApiBaseClass):
         """{'techs': {'1': 'Metal Mine'}, 'missions': {'1': 'Attack'}"""
         url = self._get_localization_url()
         return self._load_nested_data(url)
+
+    def load_player_data(self, player_id: Union[int, str]) -> dict:
+        url = self._get_playerdata_url(player_id)
+        return self._load_data_via_xmltodict(url)
+
 
 
 class UniverseData:
@@ -137,10 +140,7 @@ class UniverseData:
 
     def get_player_data(self, player_name: str) -> dict:
         player_id_str = self.get_player_id(player_name)
-        url = self.urls._get_playerdata_url(int(player_id_str))
-        response = requests.get(url)
-        xml_string = response.content.decode('utf-8')
-        return dict(xmltodict.parse(xml_string))
+        return self.urls.load_player_data(player_id_str)
 
     def get_player_data_as_json(self, player_name: str) -> str:
         return json.dumps(self.get_player_data(player_name), indent=2)

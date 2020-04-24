@@ -1,7 +1,8 @@
 from datetime import datetime as dt
 import xml.etree.ElementTree as ET
-import requests
 import pandas as pd
+import requests
+import xmltodict
 
 
 class ApiBaseClass:
@@ -16,6 +17,11 @@ class ApiBaseClass:
         xml_string = response.content.decode('utf-8')
         root = ET.fromstring(xml_string)
         return {elm.tag: elm.text for elm in list(root)}
+
+    def _load_data_via_xmltodict(self, url: str) -> {}:
+        response = requests.get(url)
+        xml_string = response.content.decode('utf-8')
+        return xmltodict.parse(xml_string, attr_prefix='', dict_constructor=dict)
 
     def _load_nested_data(self, url: str) -> {str: {str: str}}:
         response = requests.get(url)
