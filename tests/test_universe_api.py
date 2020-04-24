@@ -1,11 +1,13 @@
 from ogame_stats.highscores_api import HighScoreUrls
 from .testing_utils import TestingFiles as tf
 
-class Dummy:
-    universe_id = 999
+
+class Constants:
+    universe_id = 162
     community = 'en'
 
-class TestHighScoresUrls(Dummy):
+
+class TestHighScoresUrls(Constants):
     """
     talking about the low hanging fruits
     """
