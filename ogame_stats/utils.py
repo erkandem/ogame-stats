@@ -43,4 +43,5 @@ class ApiBaseClass:
 
 
 def nowstr():
+    """evaluates to valid file and folder name(-component)"""
     return dt.now().strftime('%Y%m%d_%H%M%S_%f')
