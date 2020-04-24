@@ -1,10 +1,15 @@
 from pathlib import Path
 import zipfile
+import requests
 
 
 class TestingFiles:
+    """
+    Subclass with this to overwrite actual HTTP request with
+    the "cached" files for testing purposes
+    """
     ARCHIVE_FILEPATH = Path('tests/testing_data/testing_data.zip')
-    file_mapping = {
+    URL_TO_FILE_MAPPING = {
         'https://s162-en.ogame.gameforge.com/api/highscore.xml?category=1&type=0': 'highscore_162_en_1_0_20200422_170240_197857.xml',
         'https://s162-en.ogame.gameforge.com/api/highscore.xml?category=1&type=1': 'highscore_162_en_1_1_20200422_170240_348153.xml',
         'https://s162-en.ogame.gameforge.com/api/highscore.xml?category=1&type=2': 'highscore_162_en_1_2_20200422_170240_500826.xml',
@@ -21,18 +26,28 @@ class TestingFiles:
         'https://s162-en.ogame.gameforge.com/api/playerData.xml?id=110008': 'playerdata_162_en_110008_20200424_123313_597067.xml',
     }
 
-    def get_file_path(self, file_type: str):
-        if file_type not in self.file_mapping.keys():
+    def get_file_path(self, url: str):
+        if url not in self.URL_TO_FILE_MAPPING.keys():
             raise KeyError(
-                f'got `{file_type}`. valid ones are {list(self.file_mapping)}.'
+                f'got url `{url}`. Currently defined ones are {list(self.URL_TO_FILE_MAPPING)}.'
             )
-        return self.file_mapping[file_type]
+        return self.URL_TO_FILE_MAPPING[url]
 
-    def load_file(self, file_type: str) -> bytes:
+    def load_file(self, url: str) -> bytes:
         with zipfile.ZipFile(self.ARCHIVE_FILEPATH, 'r') as zf:
-            file_name = self.get_file_path(file_type)
+            file_name = self.get_file_path(url)
             data = zf.read(file_name)
         return data
 
-    def load_file_as_str(self, file_type: str) -> str:
-        return self.load_file(file_type).decode()
+    def load_file_as_str(self, url: str) -> str:
+        return self.load_file(url).decode()
+
+    def _do_get(self, url: str) -> requests.Response:
+        """
+        Compatibility wrapper for ApiBaseClass.
+        Spit out a fake response object with real but old data.
+        """
+        data = self.load_file(url)
+        response = requests.Response()
+        response._content = data
+        return response
