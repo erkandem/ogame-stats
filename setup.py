@@ -39,8 +39,8 @@ setup(
     packages=find_packages(where='ogame_stats', exclude=('docs', 'tests')),
     python_requires='>=3.6, <4',
     install_requires=['pandas', 'requests', 'xmltodict'],
-    extras_require={  # Optional
-        'test': ['coverage', 'pytest'],
+    extras_require={
+        'dev': ['coverage', 'pytest', 'wheel'],
     },
     project_urls={
         'Bug Reports': 'https://github.com/erkandem/ogame_stats/issues',
