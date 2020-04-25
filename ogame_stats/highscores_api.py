@@ -126,7 +126,7 @@ class HighScoreData:
     honor: pd.DataFrame
     urls: HighScoreUrls
 
-    def __init__(self, universe_id: int, community: str, do_init: bool = False):
+    def __init__(self, universe_id: int, community: str):
         self.universe_id = universe_id
         self.community = community
         self.urls = HighScoreUrls(universe_id, community)
