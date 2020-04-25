@@ -85,10 +85,27 @@ universe.get_player_status('someSpecialName')
 'I'
 ```
 
-or just dump everything about `someSpecialName``:
+or just dump everything about `someSpecialName`:
 ```python
 universe.get_player_data('someSpecialName')
 ```
+
+get the complete list of players within a specific alliance
+```python
+universe.get_players_of_alliance('someAlliance')
+         id                 name status alliance
+291  103910           reabuilder    NaN   500234
+292  103930              1 4 Fun      v   500234
+312  104181            night owl    NaN   500234
+...
+```
+
+get to see the distribution of the planets owned by the alliance members.
+```python
+universe.get_planets_distribution_by_galaxy('someAlliance')
+{'1': 7, '2': 17, '3': 29, '4': 38, '5': 9, '6': 9, '7': 9, '8': 2, '9': 6} 
+```
+
 
 ### Update frequencies of data
 Don't be a cunt and spam the server with requests. Since the datasets and classes avoid the usage of 
@@ -107,5 +124,5 @@ universes.xml -> static
 ```
 
 ## issues/ideas
-are generally welcome. saves us time.
-
+ ... are generally welcome. saves us time.
+Pull requests welcome. Be sure to include the tests.
