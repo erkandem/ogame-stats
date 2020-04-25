@@ -69,7 +69,7 @@ e.g. look up the planets of a user.
 
 ```python
 ##%% get the coordinates and names of all the planets of a player
-universe.get_planets_of_player('someNameSpecial')
+universe.get_planets_of_player('someSpecialName')
 [{'coords': '1:45:4', 'name': 'MotherPlanet'},
 {'coords': '1:144:2', 'name': 'ColonyC'},
 {'coords': '1:145:3', 'name': 'ColonyB'},
