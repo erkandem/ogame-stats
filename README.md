@@ -81,13 +81,13 @@ universe.get_planets_of_player('someSpecialName')
 
 or ask for the status (active, inactive, banned, holiday etc.). 
 ```python
-universe.get_player_status('someNameSpecial')
+universe.get_player_status('someSpecialName')
 'I'
 ```
 
-or just dump everything about `someNameSpecial``:
+or just dump everything about `someSpecialName``:
 ```python
-universe.get_player_data('someNameSpecial')
+universe.get_player_data('someSpecialName')
 ```
 
 ### Update frequencies of data
