@@ -31,10 +31,8 @@ class ApiBaseClass:
         xml_string = response.content.decode('utf-8')
         root = ET.fromstring(xml_string)
         return {
-            elm.tag: {
-                child.attrib['id']: child.text
-                for child in list(elm)
-            } for elm in list(root)
+            elm.tag: {child.attrib['id']: child.text for child in list(elm)}
+            for elm in list(root)
         }
 
     def _load_data_as_df(self, url: str) -> pd.DataFrame:

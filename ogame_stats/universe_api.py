@@ -137,7 +137,9 @@ class UniverseQuestions(UniverseData):
         try:
             return str(self.players.query('name == @player_name').iloc[0]['id'])
         except IndexError:
-            print(f"`{player_name}` not found. look at `players['name']` for valid player names")
+            print(
+                f"`{player_name}` not found. look at `players['name']` for valid player names"
+            )
 
     def get_player_status(self, player_name: str) -> str:
         """['a', nan, 'vi', 'v', 'I', 'vIb', 'vb', 'vI', 'i', 'o', 'vib', 'vo']"""
@@ -181,7 +183,9 @@ class UniverseQuestions(UniverseData):
     def get_planets_distribution_by_galaxy(self, alliance_tag: str) -> Dict:
         galaxy_list = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
         coords = self.get_planets_of_alliance(alliance_tag)
-        return {galaxy: sum([elm[0] == galaxy for elm in coords]) for galaxy in galaxy_list}
+        return {
+            galaxy: sum([elm[0] == galaxy for elm in coords]) for galaxy in galaxy_list
+        }
 
     def is_planet_taken(self, coords_str: str) -> bool:
         if coords_str in self.universe_coords_list:

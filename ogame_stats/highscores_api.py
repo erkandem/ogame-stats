@@ -6,10 +6,7 @@ from .utils import ApiBaseClass
 class HighScoreUrls(ApiBaseClass):
     universe_id: int
     community: str
-    hs_categories = {
-        'player': 1,
-        'alliance': 2
-    }
+    hs_categories = {'player': 1, 'alliance': 2}
     hs_types = {
         'total': 0,
         'economy': 1,
@@ -18,7 +15,7 @@ class HighScoreUrls(ApiBaseClass):
         'mil_built': 4,
         'mil_destroyed': 5,
         'mil_lost': 6,
-        'honor': 7
+        'honor': 7,
     }
 
     def __init__(self, universe_id: int, community: str):
@@ -33,35 +30,59 @@ class HighScoreUrls(ApiBaseClass):
 
     def _get_total_url(self):
         """ position: str, id: str, score: str"""
-        query = {'category': self.hs_categories['player'], 'type': self.hs_types['total']}
+        query = {
+            'category': self.hs_categories['player'],
+            'type': self.hs_types['total'],
+        }
         return self._get_scores_url(query)
 
     def _get_economy_url(self):
-        query = {'category': self.hs_categories['player'], 'type': self.hs_types['economy']}
+        query = {
+            'category': self.hs_categories['player'],
+            'type': self.hs_types['economy'],
+        }
         return self._get_scores_url(query)
 
     def _get_research_url(self):
-        query = {'category': self.hs_categories['player'], 'type': self.hs_types['research']}
+        query = {
+            'category': self.hs_categories['player'],
+            'type': self.hs_types['research'],
+        }
         return self._get_scores_url(query)
 
     def _get_military_url(self):
-        query = {'category': self.hs_categories['player'], 'type': self.hs_types['military']}
+        query = {
+            'category': self.hs_categories['player'],
+            'type': self.hs_types['military'],
+        }
         return self._get_scores_url(query)
 
     def _get_military_built_url(self):
-        query = {'category': self.hs_categories['player'], 'type': self.hs_types['mil_built']}
+        query = {
+            'category': self.hs_categories['player'],
+            'type': self.hs_types['mil_built'],
+        }
         return self._get_scores_url(query)
 
     def _get_military_destroyed_url(self):
-        query = {'category': self.hs_categories['player'], 'type': self.hs_types['mil_destroyed']}
+        query = {
+            'category': self.hs_categories['player'],
+            'type': self.hs_types['mil_destroyed'],
+        }
         return self._get_scores_url(query)
 
     def _get_military_lost_url(self):
-        query = {'category': self.hs_categories['player'], 'type': self.hs_types['mil_lost']}
+        query = {
+            'category': self.hs_categories['player'],
+            'type': self.hs_types['mil_lost'],
+        }
         return self._get_scores_url(query)
 
     def _get_honor_url(self):
-        query = {'category': self.hs_categories['player'], 'type': self.hs_types['honor']}
+        query = {
+            'category': self.hs_categories['player'],
+            'type': self.hs_types['honor'],
+        }
         return self._get_scores_url(query)
 
     def get_total_data(self):
