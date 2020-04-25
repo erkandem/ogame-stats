@@ -6,16 +6,16 @@ from .utils import ApiBaseClass
 class HighScoreUrls(ApiBaseClass):
     universe_id: int
     community: str
-    hs_categories = {'player': 1, 'alliance': 2}
+    hs_categories = {"player": 1, "alliance": 2}
     hs_types = {
-        'total': 0,
-        'economy': 1,
-        'research': 2,
-        'military': 3,
-        'mil_built': 4,
-        'mil_destroyed': 5,
-        'mil_lost': 6,
-        'honor': 7,
+        "total": 0,
+        "economy": 1,
+        "research": 2,
+        "military": 3,
+        "mil_built": 4,
+        "mil_destroyed": 5,
+        "mil_lost": 6,
+        "honor": 7,
     }
 
     def __init__(self, universe_id: int, community: str):
@@ -26,111 +26,111 @@ class HighScoreUrls(ApiBaseClass):
         return f"https://s{self.universe_id}-{self.community}.ogame.gameforge.com/api/highscore.xml"
 
     def _get_scores_url(self, query: dict):
-        return f'{self._get_base_url()}?{urlencode(query)}'
+        return f"{self._get_base_url()}?{urlencode(query)}"
 
     def _get_total_url(self):
         """ position: str, id: str, score: str"""
         query = {
-            'category': self.hs_categories['player'],
-            'type': self.hs_types['total'],
+            "category": self.hs_categories["player"],
+            "type": self.hs_types["total"],
         }
         return self._get_scores_url(query)
 
     def _get_economy_url(self):
         query = {
-            'category': self.hs_categories['player'],
-            'type': self.hs_types['economy'],
+            "category": self.hs_categories["player"],
+            "type": self.hs_types["economy"],
         }
         return self._get_scores_url(query)
 
     def _get_research_url(self):
         query = {
-            'category': self.hs_categories['player'],
-            'type': self.hs_types['research'],
+            "category": self.hs_categories["player"],
+            "type": self.hs_types["research"],
         }
         return self._get_scores_url(query)
 
     def _get_military_url(self):
         query = {
-            'category': self.hs_categories['player'],
-            'type': self.hs_types['military'],
+            "category": self.hs_categories["player"],
+            "type": self.hs_types["military"],
         }
         return self._get_scores_url(query)
 
     def _get_military_built_url(self):
         query = {
-            'category': self.hs_categories['player'],
-            'type': self.hs_types['mil_built'],
+            "category": self.hs_categories["player"],
+            "type": self.hs_types["mil_built"],
         }
         return self._get_scores_url(query)
 
     def _get_military_destroyed_url(self):
         query = {
-            'category': self.hs_categories['player'],
-            'type': self.hs_types['mil_destroyed'],
+            "category": self.hs_categories["player"],
+            "type": self.hs_types["mil_destroyed"],
         }
         return self._get_scores_url(query)
 
     def _get_military_lost_url(self):
         query = {
-            'category': self.hs_categories['player'],
-            'type': self.hs_types['mil_lost'],
+            "category": self.hs_categories["player"],
+            "type": self.hs_types["mil_lost"],
         }
         return self._get_scores_url(query)
 
     def _get_honor_url(self):
         query = {
-            'category': self.hs_categories['player'],
-            'type': self.hs_types['honor'],
+            "category": self.hs_categories["player"],
+            "type": self.hs_types["honor"],
         }
         return self._get_scores_url(query)
 
     def get_total_data(self):
         url = self._get_total_url()
         df = self._load_data_as_df(url)
-        df['score'] = df['score'].astype(float)
+        df["score"] = df["score"].astype(float)
         return df
 
     def get_economy_data(self):
         url = self._get_economy_url()
         df = self._load_data_as_df(url)
-        df['score'] = df['score'].astype(float)
+        df["score"] = df["score"].astype(float)
         return df
 
     def get_research_data(self):
         url = self._get_research_url()
         df = self._load_data_as_df(url)
-        df['score'] = df['score'].astype(float)
+        df["score"] = df["score"].astype(float)
         return df
 
     def get_military_data(self):
         url = self._get_military_url()
         df = self._load_data_as_df(url)
-        df['score'] = df['score'].astype(float)
+        df["score"] = df["score"].astype(float)
         return df
 
     def get_military_built_data(self):
         url = self._get_military_built_url()
         df = self._load_data_as_df(url)
-        df['score'] = df['score'].astype(float)
+        df["score"] = df["score"].astype(float)
         return df
 
     def get_military_destroyed_data(self):
         url = self._get_military_destroyed_url()
         df = self._load_data_as_df(url)
-        df['score'] = df['score'].astype(float)
+        df["score"] = df["score"].astype(float)
         return df
 
     def get_military_lost_data(self):
         url = self._get_military_lost_url()
         df = self._load_data_as_df(url)
-        df['score'] = df['score'].astype(float)
+        df["score"] = df["score"].astype(float)
         return df
 
     def get_honor_data(self):
         url = self._get_honor_url()
         df = self._load_data_as_df(url)
-        df['score'] = df['score'].astype(float)
+        df["score"] = df["score"].astype(float)
         return df
 
 

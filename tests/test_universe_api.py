@@ -62,7 +62,7 @@ class TestUniverseData(Constants):
     def test_that_it_is_patched(self, mock_requests):
         """depends on the sample data which contains only data for universe 162"""
         with pytest.raises(KeyError):
-            hs = UniverseData(361, 'en')
+            hs = UniverseData(361, "en")
 
     def test_get_total_data(self, mock_requests):
         universe = UniverseData(self.universe_id, self.community)

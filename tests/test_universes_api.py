@@ -9,7 +9,7 @@ from .testing_utils import mock_requests
 class TestUniversesDataUrls(Constants):
     def test__get_universes_url(self):
         udu = UniversesDataUrls()
-        expected = 'https://lobby.ogame.gameforge.com/api/servers'
+        expected = "https://lobby.ogame.gameforge.com/api/servers"
         result = udu._get_universes_url()
         assert result == expected
 

@@ -47,8 +47,8 @@ class UniverseDataUrls(ApiBaseClass):
         return f"{self._get_base_url()}/localization.xml"
 
     def _get_playerdata_url(self, player_id: int) -> str:
-        query = {'id': player_id}
-        return f'{self._get_base_url()}/playerData.xml?{urlencode(query)}'
+        query = {"id": player_id}
+        return f"{self._get_base_url()}/playerData.xml?{urlencode(query)}"
 
     def load_server_data(self) -> {str: str}:
         url = self._get_serverdata_url()
@@ -101,12 +101,12 @@ class UniverseData:
         self.urls = UniverseDataUrls(universe_id, community)
         self.players = self.urls.load_players_data()
         self.universe = self.urls.load_universe_data()
-        self.universe_coords_list = self.universe['coords'].to_list()
+        self.universe_coords_list = self.universe["coords"].to_list()
         self.alliances = self.urls.load_alliances_data()
         self.serverdata = self.urls.load_server_data()
         localization = self.urls.load_localization_data()
-        self.techs = localization['techs']
-        self.missions = localization['missions']
+        self.techs = localization["techs"]
+        self.missions = localization["missions"]
 
 
 class UniverseQuestions(UniverseData):
@@ -120,14 +120,14 @@ class UniverseQuestions(UniverseData):
 
     def get_planets_of_player(self, player_name: str) -> dict:
         player_id_str = self.get_player_id(player_name)
-        results = self.universe.query('player == @player_id_str')
+        results = self.universe.query("player == @player_id_str")
         results = results.reset_index(drop=True)
-        return results[['coords', 'name']].to_dict(orient='records')
+        return results[["coords", "name"]].to_dict(orient="records")
 
     def get_planets_of_player_by_id(self, player_id_str: str) -> dict:
-        results = self.universe.query('player == @player_id_str')
+        results = self.universe.query("player == @player_id_str")
         results = results.reset_index(drop=True)
-        return results[['coords', 'name']].to_dict(orient='records')
+        return results[["coords", "name"]].to_dict(orient="records")
 
     def get_planets_of_player_as_json(self, player_name: str):
         results = self.get_planets_of_player(player_name)
@@ -135,7 +135,7 @@ class UniverseQuestions(UniverseData):
 
     def get_player_id(self, player_name: str) -> str:
         try:
-            return str(self.players.query('name == @player_name').iloc[0]['id'])
+            return str(self.players.query("name == @player_name").iloc[0]["id"])
         except IndexError:
             print(
                 f"`{player_name}` not found. look at `players['name']` for valid player names"
@@ -143,11 +143,11 @@ class UniverseQuestions(UniverseData):
 
     def get_player_status(self, player_name: str) -> str:
         """['a', nan, 'vi', 'v', 'I', 'vIb', 'vb', 'vI', 'i', 'o', 'vib', 'vo']"""
-        return str(self.players.query("name == @player_name").iloc[0]['status'])
+        return str(self.players.query("name == @player_name").iloc[0]["status"])
 
     def get_player_alliance(self, player_name: str) -> str:
         """integer as str"""
-        return str(self.players.query("name == @player_name").iloc[0]['alliance'])
+        return str(self.players.query("name == @player_name").iloc[0]["alliance"])
 
     def get_player_data(self, player_name: str) -> dict:
         player_id_str = self.get_player_id(player_name)
@@ -157,31 +157,31 @@ class UniverseQuestions(UniverseData):
         return json.dumps(self.get_player_data(player_name), indent=2)
 
     def get_alliance_id_by_tag(self, tag: str) -> str:
-        return self.alliances.query('tag == @tag').iloc[0]['id']
+        return self.alliances.query("tag == @tag").iloc[0]["id"]
 
     def get_alliance_id_by_name(self, name: str) -> str:
-        return self.alliances.query('name == @name').iloc[0]['id']
+        return self.alliances.query("name == @name").iloc[0]["id"]
 
     def get_players_of_alliance(self, tag: str) -> pd.DataFrame:
         alliance_id = self.get_alliance_id_by_tag(tag)
-        members = self.players.query('alliance == @alliance_id')
+        members = self.players.query("alliance == @alliance_id")
         return members
 
     def get_players_of_alliances_by_name(self, name: str) -> pd.DataFrame:
         alliance_id = self.get_alliance_id_by_name(name)
-        members = self.players.query('alliance == @alliance_id')
+        members = self.players.query("alliance == @alliance_id")
         return members
 
     def get_planets_of_alliance(self, tag: str) -> [str]:
         members = self.get_players_of_alliance(tag)
-        member_ids = members['id'].to_list()
+        member_ids = members["id"].to_list()
         data = [self.get_planets_of_player_by_id(player_id) for player_id in member_ids]
-        coords = [planet['coords'] for player in data for planet in player]
+        coords = [planet["coords"] for player in data for planet in player]
         coords.sort()
         return coords
 
     def get_planets_distribution_by_galaxy(self, alliance_tag: str) -> Dict:
-        galaxy_list = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+        galaxy_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
         coords = self.get_planets_of_alliance(alliance_tag)
         return {
             galaxy: sum([elm[0] == galaxy for elm in coords]) for galaxy in galaxy_list
