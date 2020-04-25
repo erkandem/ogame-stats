@@ -62,9 +62,14 @@ class TestingFiles:
         return response
 
     def get(self, url: str) -> requests.Response:
+        """Compatibility wrapper to mimic requests.get(url). Used during tests"""
         return self._do_get(url)
 
 
 @pytest.fixture
 def mock_requests(monkeypatch):
+    """
+    used in tests to avoid IO by (monkey)patching the requests package
+    with TestingFiles class instance, which serves requested files from an archive
+    """
     monkeypatch.setattr(utils, "requests", TestingFiles())
