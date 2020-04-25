@@ -35,7 +35,7 @@ class TestingFiles:
         "https://s162-en.ogame.gameforge.com/api/serverData.xml": "server_data_162_en_20200424_224101_525526.xml",
     }
 
-    def get_file_path(self, url: str):
+    def get_file_path(self, url: str) -> str:
         if url not in self.URL_TO_FILE_MAPPING.keys():
             raise KeyError(
                 f"got url `{url}`. Currently defined ones are {list(self.URL_TO_FILE_MAPPING)}."

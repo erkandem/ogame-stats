@@ -129,7 +129,7 @@ class UniverseQuestions(UniverseData):
         results = results.reset_index(drop=True)
         return results[["coords", "name"]].to_dict(orient="records")
 
-    def get_planets_of_player_as_json(self, player_name: str):
+    def get_planets_of_player_as_json(self, player_name: str) -> str:
         results = self.get_planets_of_player(player_name)
         return json.dumps(results, indent=2)
 
