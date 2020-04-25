@@ -17,7 +17,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='ogame_stats',
-    version='0.3.2',
+    version='0.3.3',
     description='wrapper around public game statistics for https://ogame.org',
     long_description=long_description,  # Optional
     long_description_content_type='text/markdown',
