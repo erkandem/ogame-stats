@@ -136,10 +136,9 @@ class UniverseQuestions(UniverseData):
     def get_player_id(self, player_name: str) -> str:
         try:
             return str(self.players.query("name == @player_name").iloc[0]["id"])
-        except IndexError:
-            print(
-                f"`{player_name}` not found. look at `players['name']` for valid player names"
-            )
+        except IndexError as e:
+            msg = f"`{player_name}` not found. look at `players['name']` for valid player names."
+            raise IndexError(msg) from e
 
     def get_player_status(self, player_name: str) -> str:
         """['a', nan, 'vi', 'v', 'I', 'vIb', 'vb', 'vI', 'i', 'o', 'vib', 'vo']"""
