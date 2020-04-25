@@ -129,9 +129,9 @@ class UniverseQuestions(UniverseData):
         results = results.reset_index(drop=True)
         return results[["coords", "name"]].to_dict(orient="records")
 
-    def get_planets_of_player_as_json(self, player_name: str) -> str:
+    def get_planets_of_player_as_json(self, player_name: str, indent: int = None) -> str:
         results = self.get_planets_of_player(player_name)
-        return json.dumps(results, indent=2)
+        return json.dumps(results, indent=indent)
 
     def get_player_id(self, player_name: str) -> str:
         try:
@@ -153,8 +153,8 @@ class UniverseQuestions(UniverseData):
         player_id_str = self.get_player_id(player_name)
         return self.urls.load_player_data(player_id_str)
 
-    def get_player_data_as_json(self, player_name: str) -> str:
-        return json.dumps(self.get_player_data(player_name), indent=2)
+    def get_player_data_as_json(self, player_name: str, indent: int = None) -> str:
+        return json.dumps(self.get_player_data(player_name), indent=indent)
 
     def get_alliance_id_by_tag(self, tag: str) -> str:
         return self.alliances.query("tag == @tag").iloc[0]["id"]
