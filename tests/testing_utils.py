@@ -15,6 +15,7 @@ class TestingFiles:
     Subclass with this to overwrite actual HTTP request with
     the "cached" files for testing purposes
     """
+
     ARCHIVE_FILEPATH = Path('tests/testing_data/testing_data.zip')
     URL_TO_FILE_MAPPING = {
         'https://s162-en.ogame.gameforge.com/api/highscore.xml?category=1&type=0': 'highscore_162_en_1_0_20200422_170240_197857.xml',

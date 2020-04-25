@@ -9,7 +9,9 @@ from .testing_utils import mock_requests
 class TestUniverseDataUrls(Constants):
     def test__get_base_path(self):
         udu = UniverseDataUrls(self.universe_id, self.community)
-        expected = f"https://s{self.universe_id}-{self.community}.ogame.gameforge.com/api"
+        expected = (
+            f"https://s{self.universe_id}-{self.community}.ogame.gameforge.com/api"
+        )
         result = udu._get_base_url()
         assert result == expected
 
