@@ -66,13 +66,13 @@ class TestUniverseQuestions(Constants):
     player_name = "Senator Thrust"
     play_id = "105178"
     planets = [
-            {"name": "Colony", "coords": "3:54:6"},
-            {"name": "Colony", "coords": "3:54:14"},
-            {"name": "Colony", "coords": "3:54:15"},
-            {"name": "Colony", "coords": "3:54:1"},
-            {"name": "Colony", "coords": "4:288:8"},
-            {"name": "Colony", "coords": "2:436:9"},
-        ]
+        {"name": "Colony", "coords": "3:54:6"},
+        {"name": "Colony", "coords": "3:54:14"},
+        {"name": "Colony", "coords": "3:54:15"},
+        {"name": "Colony", "coords": "3:54:1"},
+        {"name": "Colony", "coords": "4:288:8"},
+        {"name": "Colony", "coords": "2:436:9"},
+    ]
 
     def test_get_player_id(self, mock_requests):
         q = UniverseQuestions(self.universe_id, self.community)
@@ -82,7 +82,7 @@ class TestUniverseQuestions(Constants):
     def test_get_player_id_fails(self, mock_requests):
         q = UniverseQuestions(self.universe_id, self.community)
         with pytest.raises(IndexError):
-            q.get_player_id(self.player_name + 'suffix')
+            q.get_player_id(self.player_name + "suffix")
 
     def test_get_planets_of_player(self, mock_requests):
         q = UniverseQuestions(self.universe_id, self.community)
@@ -121,30 +121,31 @@ class TestPlayerData(Constants):
     alliance_tag = "Amitabha"
     alliance_name = "NamoAmitabha"
     alliance_members = [
-            {"id": "103910", "name": "reabuilder", "status": nan, "alliance": "500234"},
-            {"id": "103930", "name": "1 4 Fun", "status": "v", "alliance": "500234"},
-            {"id": "104181", "name": "night owl", "status": nan, "alliance": "500234"},
-            {"id": "105102", "name": "0rb1337", "status": nan, "alliance": "500234"},
-            {"id": "105226", "name": "tsintsouli", "status": "vI", "alliance": "500234",},
-            {"id": "105860", "name": "Faithslayer", "status": "vI", "alliance": "500234",},
-            {"id": "105882", "name": "Stadtholder Deimos", "status": "vI", "alliance": "500234",},
-            {"id": "105887", "name": "MrBugs3k", "status": "I", "alliance": "500234"},
-            {"id": "105991", "name": "Wrath", "status": nan, "alliance": "500234"},
-            {"id": "106229", "name": "Deviant601", "status": "vI", "alliance": "500234",},
-            {"id": "107462", "name": "Consul Saros", "status": "vi", "alliance": "500234",},
-            {"id": "108073", "name": "Vice Astra", "status": nan, "alliance": "500234"},
-            {"id": "108078", "name": "L33tmandude", "status": "vI", "alliance": "500234",},
-            {"id": "108232", "name": "Procurator Xanthus", "status": nan, "alliance": "500234",},
-            {"id": "108506", "name": "Robis of Windy Hill", "status": "v", "alliance": "500234",},
-            {"id": "108679", "name": "hooter", "status": "vi", "alliance": "500234"},
-            {"id": "108694", "name": "sexy mel", "status": "vI", "alliance": "500234"},
-            {"id": "108704", "name": "Looney", "status": "vI", "alliance": "500234"},
-            {"id": "108713", "name": "Everglade", "status": "v", "alliance": "500234"},
-            {"id": "108779", "name": "CAPTAIN JANEWAY", "status": "v", "alliance": "500234",},
-            {"id": "108809", "name": "Commodore Elara", "status": nan, "alliance": "500234",},
-            {"id": "110008", "name": "TS X0X0", "status": nan, "alliance": "500234"},
-            {"id": "110103", "name": "BLITZ", "status": nan, "alliance": "500234"},
-        ]
+        {"id": "103910", "name": "reabuilder", "status": nan, "alliance": "500234"},
+        {"id": "103930", "name": "1 4 Fun", "status": "v", "alliance": "500234"},
+        {"id": "104181", "name": "night owl", "status": nan, "alliance": "500234"},
+        {"id": "105102", "name": "0rb1337", "status": nan, "alliance": "500234"},
+        {"id": "105226", "name": "tsintsouli", "status": "vI", "alliance": "500234",},
+        {"id": "105860", "name": "Faithslayer", "status": "vI", "alliance": "500234",},
+        {"id": "105882", "name": "Stadtholder Deimos", "status": "vI", "alliance": "500234",},
+        {"id": "105887", "name": "MrBugs3k", "status": "I", "alliance": "500234"},
+        {"id": "105991", "name": "Wrath", "status": nan, "alliance": "500234"},
+        {"id": "106229", "name": "Deviant601", "status": "vI", "alliance": "500234",},
+        {"id": "107462", "name": "Consul Saros", "status": "vi", "alliance": "500234",},
+        {"id": "108073", "name": "Vice Astra", "status": nan, "alliance": "500234"},
+        {"id": "108078", "name": "L33tmandude", "status": "vI", "alliance": "500234",},
+        {"id": "108232", "name": "Procurator Xanthus", "status": nan, "alliance": "500234",},
+        {"id": "108506", "name": "Robis of Windy Hill", "status": "v", "alliance": "500234",},
+        {"id": "108679", "name": "hooter", "status": "vi", "alliance": "500234"},
+        {"id": "108694", "name": "sexy mel", "status": "vI", "alliance": "500234"},
+        {"id": "108704", "name": "Looney", "status": "vI", "alliance": "500234"},
+        {"id": "108713", "name": "Everglade", "status": "v", "alliance": "500234"},
+        {"id": "108779", "name": "CAPTAIN JANEWAY", "status": "v", "alliance": "500234",},
+        {"id": "108809", "name": "Commodore Elara", "status": nan, "alliance": "500234",},
+        {"id": "110008", "name": "TS X0X0", "status": nan, "alliance": "500234"},
+        {"id": "110103", "name": "BLITZ", "status": nan, "alliance": "500234"},
+    ]
+
     def test_get_player_data(self, mock_requests):
         q = UniverseQuestions(self.universe_id, self.community)
         result = q.get_player_data(self.player_name)
@@ -236,26 +237,28 @@ class TestPlayerData(Constants):
     def test_get_planets_of_alliance(self, mock_requests):
         q = UniverseQuestions(self.universe_id, self.community)
         results = q.get_planets_of_alliance('Amitabha')
-        expected = ['1:125:5', '1:178:8', '1:193:10', '1:214:7', '1:359:9', '1:375:4', '1:60:8', '2:125:12',
-         '2:159:4', '2:178:8', '2:285:11', '2:285:12', '2:289:12', '2:310:8', '2:317:8', '2:319:6',
-         '2:340:7', '2:341:6', '2:342:7', '2:355:8', '2:35:4', '2:361:8', '2:375:12', '2:81:8',
-         '3:102:4', '3:13:9', '3:213:10', '3:213:11', '3:213:12', '3:213:14', '3:213:15', '3:213:9',
-         '3:214:10', '3:214:11', '3:231:6', '3:239:11', '3:239:12', '3:239:13', '3:239:14',
-         '3:239:15', '3:239:4', '3:239:5', '3:239:6', '3:239:7', '3:265:4', '3:295:12', '3:300:11',
-         '3:317:9', '3:36:8', '3:374:8', '3:378:8', '3:65:4', '3:82:8', '4:125:5', '4:13:9',
-         '4:159:8', '4:214:13', '4:214:7', '4:214:9', '4:219:10', '4:219:11', '4:219:12',
-         '4:219:15', '4:219:5', '4:220:10', '4:220:11', '4:220:12', '4:220:8', '4:220:9', '4:221:7',
-         '4:226:11', '4:23:9', '4:262:10', '4:262:12', '4:262:7', '4:262:9', '4:289:7', '4:327:12',
-         '4:341:8', '4:342:8', '4:374:4', '4:378:6', '4:382:8', '4:398:12', '4:407:4', '4:407:5',
-         '4:407:7', '4:449:8', '4:63:9', '4:78:6', '4:99:4', '5:135:8', '5:135:9', '5:13:9',
-         '5:214:7', '5:215:6', '5:235:8', '5:238:12', '5:270:9', '5:95:8', '6:13:9', '6:278:1',
-         '6:278:15', '6:280:10', '6:280:6', '6:280:9', '6:281:7', '6:289:7', '6:378:8', '7:13:9',
-         '7:236:8', '7:246:8', '7:257:1', '7:257:8', '7:285:4', '7:285:5', '7:335:8', '7:380:8',
-         '8:168:8', '8:301:8', '9:252:8', '9:267:8', '9:285:7', '9:285:8', '9:285:9', '9:399:1']
+        expected = [
+            '1:125:5', '1:178:8', '1:193:10', '1:214:7', '1:359:9', '1:375:4', '1:60:8', '2:125:12',
+            '2:159:4', '2:178:8', '2:285:11', '2:285:12', '2:289:12', '2:310:8', '2:317:8', '2:319:6',
+            '2:340:7', '2:341:6', '2:342:7', '2:355:8', '2:35:4', '2:361:8', '2:375:12', '2:81:8',
+            '3:102:4', '3:13:9', '3:213:10', '3:213:11', '3:213:12', '3:213:14', '3:213:15', '3:213:9',
+            '3:214:10', '3:214:11', '3:231:6', '3:239:11', '3:239:12', '3:239:13', '3:239:14',
+            '3:239:15', '3:239:4', '3:239:5', '3:239:6', '3:239:7', '3:265:4', '3:295:12', '3:300:11',
+            '3:317:9', '3:36:8', '3:374:8', '3:378:8', '3:65:4', '3:82:8', '4:125:5', '4:13:9',
+            '4:159:8', '4:214:13', '4:214:7', '4:214:9', '4:219:10', '4:219:11', '4:219:12',
+            '4:219:15', '4:219:5', '4:220:10', '4:220:11', '4:220:12', '4:220:8', '4:220:9', '4:221:7',
+            '4:226:11', '4:23:9', '4:262:10', '4:262:12', '4:262:7', '4:262:9', '4:289:7', '4:327:12',
+            '4:341:8', '4:342:8', '4:374:4', '4:378:6', '4:382:8', '4:398:12', '4:407:4', '4:407:5',
+            '4:407:7', '4:449:8', '4:63:9', '4:78:6', '4:99:4', '5:135:8', '5:135:9', '5:13:9',
+            '5:214:7', '5:215:6', '5:235:8', '5:238:12', '5:270:9', '5:95:8', '6:13:9', '6:278:1',
+            '6:278:15', '6:280:10', '6:280:6', '6:280:9', '6:281:7', '6:289:7', '6:378:8', '7:13:9',
+            '7:236:8', '7:246:8', '7:257:1', '7:257:8', '7:285:4', '7:285:5', '7:335:8', '7:380:8',
+            '8:168:8', '8:301:8', '9:252:8', '9:267:8', '9:285:7', '9:285:8', '9:285:9', '9:399:1'
+        ]
         assert results == expected
 
     def test_get_planets_distribution_by_galaxy(self, mock_requests):
         q = UniverseQuestions(self.universe_id, self.community)
-        results = q.get_planets_distribution_by_galaxy('Amitabha')
-        expected = {'1': 7, '2': 17, '3': 29, '4': 38, '5': 9, '6': 9, '7': 9, '8': 2, '9': 6}
+        results = q.get_planets_distribution_by_galaxy("Amitabha")
+        expected = {"1": 7, "2": 17, "3": 29, "4": 38, "5": 9, "6": 9, "7": 9, "8": 2, "9": 6}
         assert results == expected
