@@ -1,13 +1,13 @@
-## ogame data api
+## ogame stats
 
-wrapper around public game statistics for https://ogame.org
+wrapper and logic around public game statistics for https://ogame.org
 
 ---
 
-Some classes and methods to retrieve public data of the online game **ogame**.
+Some classes and methods to retrieve public data of the online game `ogame`.
 This package is **NOT** intended to interact with an account - which is forbidden anyway.
 
-Might be used to query the data set, visualize results and generally to do data analysis.
+Might be used to query the data sets, visualize results and generally to do data analysis.
 
 ## requirements
 depends on:
@@ -43,7 +43,9 @@ community = 'en'
 #%% instantiate and thereby load the data
 universe = ogame_stats.UniverseQuestions(universe_id, community)
 ```
+
 than you could take a look at the data sets.
+
 ```python
 #%% get a list of all the planets
 universe.universe
@@ -107,7 +109,7 @@ universe.get_planets_distribution_by_galaxy('someAlliance')
 
 
 ### Update frequencies of data
-Don't be a cunt and spam the server with requests. Since the datasets and classes avoid the usage of 
+Don't spam the servers with requests. Since the data sets and classes avoid the usage of 
 XML attributes, it's easy to just pickle your `UniverseData` for tests, development and everything else. 
 These are the update frequencies I copied over at some point in time (might have changed):
 
@@ -122,6 +124,14 @@ localization.xml -> static
 universes.xml -> static
 ```
 
+Maybe the easiest way would be to use [requests_cache](https://github.com/reclosedev/requests-cache).
+
+```
+import requests_cache
+requests_cache.install_cache('demo_cache')
+```
+
 ## issues/ideas
  ... are generally welcome. saves us time.
+Also, the overall design is far from being ideal.
 Pull requests welcome. Be sure to include the tests.
