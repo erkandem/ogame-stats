@@ -21,7 +21,7 @@ setup(
     description='wrapper around public game statistics for https://ogame.org',
     long_description=long_description,  # Optional
     long_description_content_type='text/markdown',
-    url='https://github.com/erkandem/ogame_stats',
+    url='https://github.com/erkandem/ogame-stats',
     author='Erkan Demiralay',
     author_email='erkan.dem@pm.me',
     classifiers=[
@@ -42,7 +42,7 @@ setup(
         'dev': ['coverage', 'pytest', 'wheel'],
     },
     project_urls={
-        'Bug Reports': 'https://github.com/erkandem/ogame_stats/issues',
-        'Source': 'https://github.com/erkandem/ogame_stats/',
+        'Bug Reports': 'https://github.com/erkandem/ogame-stats/issues',
+        'Source': 'https://github.com/erkandem/ogame-stats/',
     },
 )
