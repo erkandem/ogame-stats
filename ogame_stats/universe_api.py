@@ -101,7 +101,7 @@ class UniverseData:
         self.urls = UniverseDataUrls(universe_id, community)
         self.players = self.urls.load_players_data()
         self.universe = self.urls.load_universe_data()
-        self.universe_coords_list = self.universe["coords"].to_list()
+        self.universe_coords_set = set(self.universe["coords"].to_list())
         self.alliances = self.urls.load_alliances_data()
         self.serverdata = self.urls.load_server_data()
         localization = self.urls.load_localization_data()
@@ -185,8 +185,4 @@ class UniverseQuestions(UniverseData):
         return {galaxy: sum([elm[0] == galaxy for elm in coords]) for galaxy in galaxy_list}
 
     def is_planet_taken(self, coords_str: str) -> bool:
-        if coords_str in self.universe_coords_list:
-            result = True
-        else:
-            result = False
-        return result
+        return coords_str in self.universe_coords_set
