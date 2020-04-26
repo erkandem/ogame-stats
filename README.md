@@ -41,8 +41,7 @@ universe_id = 162
 community = 'en'
 
 #%% instantiate and thereby load the data
-universe = ogame_stats.UniverseData(universe_id, community)
-
+universe = ogame_stats.UniverseQuestions(universe_id, community)
 ```
 than you could take a look at the data sets.
 ```python
