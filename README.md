@@ -25,7 +25,7 @@ virtualenv -p python3.<6,7,8> venv
 
 install the wrapper
 ```
-pip install ogama_data_api
+pip install ogama_stats
 ```
 
 ## usage
